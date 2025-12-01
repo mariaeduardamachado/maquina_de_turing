@@ -107,6 +107,7 @@ Representação simplificada do comportamento geral:
 python3 mt_regra30.py
 
 **Estrutura do Repositório**
+
 /
 ├── README.md
 └── mt_regra30.py
