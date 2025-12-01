@@ -9,15 +9,27 @@ def regra_30_tripla(left, center, right):
 
 class MaquinaRegra30:
     def __init__(self, fita):
+        # Adiciona área de saída caso não exista
         if '|' not in fita:
             fita = fita + '|' + 'B' * 200
+
         self.fita = list(fita)
         self.head = 0
 
+        # Identifica limites da fita
         self.start = self.fita.index('#') + 1
         self.end = self.fita.index('#', self.start)
         self.sep = self.fita.index('|')
         self.out_pos = 0
+
+        # Faz validação da entrada
+        self.validar_entrada()
+
+    # 🔍 Nova função adicionada para validar somente 0 e 1
+    def validar_entrada(self):
+        for c in self.fita[self.start:self.end]:
+            if c not in ('0', '1'):
+                raise ValueError(f"Erro: símbolo inválido '{c}'. A entrada só pode conter 0 e 1.")
 
     def ler_celula(self, idx):
         if idx < self.start or idx >= self.end:
@@ -39,9 +51,12 @@ class MaquinaRegra30:
             left = self.ler_celula(i - 1)
             center = self.ler_celula(i)
             right = self.ler_celula(i + 1)
+
             novo = regra_30_tripla(left, center, right)
             self.escrever_saida(novo)
+
             i += 1
+
         return ''.join(self.fita[self.sep+1:self.sep+1+self.out_pos])
 
     def fita_str(self):
@@ -49,9 +64,10 @@ class MaquinaRegra30:
 
 
 def exemplo_uso():
-    entrada = "#000100#|"
+    entrada = "#10100#|"
     maquina = MaquinaRegra30(entrada)
     proxima = maquina.executar()
+
     print("Entrada: ", entrada)
     print("Próxima:", proxima)
     print("Fita completa:", maquina.fita_str())
