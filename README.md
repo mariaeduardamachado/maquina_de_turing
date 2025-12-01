@@ -80,6 +80,7 @@ A Máquina de Turing proposta é definida por:
 
 Representação simplificada do comportamento geral:
            +----------------------+
+           
            |                      |
            v                      |
           (q0) -------> (q_scan) ----0/1------> (q_compute)
