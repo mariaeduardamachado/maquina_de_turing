@@ -9,23 +9,19 @@ def regra_30_tripla(left, center, right):
 
 class MaquinaRegra30:
     def __init__(self, fita):
-        # Adiciona área de saída caso não exista
         if '|' not in fita:
             fita = fita + '|' + 'B' * 200
 
         self.fita = list(fita)
         self.head = 0
 
-        # Identifica limites da fita
         self.start = self.fita.index('#') + 1
         self.end = self.fita.index('#', self.start)
         self.sep = self.fita.index('|')
         self.out_pos = 0
 
-        # Faz validação da entrada
         self.validar_entrada()
 
-    # 🔍 Nova função adicionada para validar somente 0 e 1
     def validar_entrada(self):
         for c in self.fita[self.start:self.end]:
             if c not in ('0', '1'):
